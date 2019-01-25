@@ -5,6 +5,10 @@ CloudBalkan server - Ubuntu Server 18.04 - 0.5GB RAM, 1 CPU, 32GB - 78.130.176.1
 apt update -y
 apt upgrade -y
 
-apt install postgresql postgresql-contrib python-pip -y
+apt install postgresql postgresql-contrib python3-pip -y
 
-pip install django requests bs4
+pip3 install django requests bs4
+
+useradd -s /bin/bash -G sudo controller
+echo -e "root\nroot" | passwd controller
+su controller
