@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Kali script to disable automount
+Exec=/usr/share/kali-defaults/setup-noautomount
+NoDisplay=true
+X-GNOME-Autostart-Phase=Initialization
+X-KDE-autostart-phase=1

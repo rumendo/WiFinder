@@ -1,0 +1,9 @@
+#!/bin/sh
+# vim:ts=2:sw=2:et
+
+if [ -n "$INITRAMFS_TOOLS_KERNEL_HOOK" ]; then
+  echo "raspi3-firmware: deferring update via initramfs-tools (hook will be called later by the kernel package)"
+  exit 0
+fi
+
+DEB_MAINT_PARAMS=configure /etc/kernel/postinst.d/50raspi3-firmware

@@ -1,0 +1,21 @@
+warning: NetworkManager is running with pid 943
+warning: wpa_supplicant is running with pid 931
+[?25l
+start capturing (stop with ctrl+c)
+INTERFACE:...............: wlx000f00775385
+FILTERLIST...............: 0 entries
+MAC CLIENT...............: fcc233107590
+MAC ACCESS POINT.........: 000e22f11cfc (incremented on every new client)
+EAPOL TIMEOUT............: 150000
+REPLAYCOUNT..............: 62041
+ANONCE...................: 8035117088ca964fdf2e9fce701cde68b918a66baccb139c169bb7d0bc8e4abd
+
+[2K[00:05:47 - 001] 1005014208ac -> fcc233107590 [FOUND PMKID CLIENT-LESS]
+[2K[00:05:51 - 001] 6c3b6bc8882d -> fcc233107590 [FOUND PMKID CLIENT-LESS]
+[2KINFO: cha=1, rx=177, rx(dropped)=127, tx=17, powned=2, err=0[2K[00:05:52 - 006] c83a3555fef8 -> fcc233107590 Stefan [PROBERESPONSE, SEQUENCE 541, AP CHANNEL 6]
+[2K[00:05:52 - 006] 98ded022d1e2 -> fcc233107590 TP-LINK_D1E2 [PROBERESPONSE, SEQUENCE 3816, AP CHANNEL 6]
+[2K[00:05:56 - 006] 549963efc270 -> ffffffffffff Stefan [PROBEREQUEST, SEQUENCE 1774]
+[2K[00:05:56 - 006] 000e22f11cfd -> 549963efc270 Stefan [PROBERESPONSE, SEQUENCE 0, AP CHANNEL 6]
+[2KINFO: cha=6, rx=855, rx(dropped)=230, tx=47, powned=2, err=0[2K[00:05:57 - 002] 18a6f7d3a110 -> fcc233107590 Kinov [PROBERESPONSE, SEQUENCE 3031, AP CHANNEL 2]
+
+terminated...[?25h

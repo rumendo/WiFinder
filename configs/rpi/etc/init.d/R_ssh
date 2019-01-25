@@ -1,0 +1,3 @@
+#!/bin/bash
+sleep 60
+ssh -fN -R 7000:localhost:22 root@78.130.176.94

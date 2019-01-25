@@ -1,0 +1,58 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          rlinetd
+# Required-Start:    $local_fs $remote_fs $syslog $network
+# Required-Stop:     $local_fs $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start/stop rlinetd server
+# Description:       Rlinetd is a inetd server including rpc support and both udp
+#                    and tcp services. In addition, it supports a number of 
+#                    resourcelimiting features, including full resource limits
+#                    renicing, chroot and limited per-service instances.
+### END INIT INFO
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/sbin/rlinetd
+NAME=rlinetd
+DESC="internet superserver"
+
+test -f $DAEMON || exit 0
+test -r /etc/rlinetd.conf || exit 0
+
+
+set -e 
+status=0
+
+. /lib/lsb/init-functions
+
+case "$1" in
+  start)
+	log_daemon_msg "Starting $DESC" "$NAME"
+	start-stop-daemon --start --quiet --exec $DAEMON || status=$?
+	log_end_msg $status
+	;;
+  stop)
+	log_daemon_msg "Stopping $DESC" "$NAME"
+	start-stop-daemon --stop --quiet --oknodo --exec $DAEMON || status=$?
+	log_end_msg $status
+	;;
+  reload|force-reload)
+	log_daemon_msg "Reloading $DESC configuration files" "$NAME"
+	start-stop-daemon --stop --signal 1 --quiet --exec $DAEMON || status=$?
+	log_end_msg $status
+	;;
+  restart)
+	log_daemon_msg "Restarting $DESC" "$NAME"
+	start-stop-daemon --stop --quiet --oknodo --exec $DAEMON || true
+	sleep 1
+	start-stop-daemon --start --quiet --exec $DAEMON || status=$?
+	log_end_msg $status
+	;;
+  *)
+	log_failure_msg "Usage: $0 {start|stop|restart|reload|force-reload}"
+	exit 1
+	;;
+esac
+
+exit $status

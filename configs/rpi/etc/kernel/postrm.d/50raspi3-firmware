@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /etc/kernel/postinst.d/50raspi3-firmware "$@"

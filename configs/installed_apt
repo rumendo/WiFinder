@@ -1,0 +1,7 @@
+wvdial
+ifmetric
+
+apt install libz-dev
+apt install libssl-dev
+apt install libpcap0.8-dev
+apt install libcurl4-openssl-dev

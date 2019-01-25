@@ -1,0 +1,15 @@
+#!/bin/bash
+
+netstat -lanp | grep 78.130.176.94
+
+if [ $? -eq 1 ]
+then
+ssh -fN -R 7000:localhost:22 root@78.130.176.94
+fi
+
+netstat -lanp | grep "192.168.21.142:22       ESTABLISHED"
+
+if [ $? -eq 1 ]
+then
+ssh -fN -R 7000:localhost:22 rpi@192.168.21.142
+fi
