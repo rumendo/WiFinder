@@ -1,0 +1,5 @@
+# interface with MAC address "b8:27:eb:a2:e8:bb" will be assigned "wlan0"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="b8:27:eb:1d:26:cb", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="wlan*", NAME="wlan0"
+
+# interface with MAC address "00:0f:00:77:53:85" will be assigned "wlan1"
+# SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="00:0f:00:77:53:85", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="wlan*", NAME="wlan1"

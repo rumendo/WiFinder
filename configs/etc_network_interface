@@ -1,16 +1,16 @@
 auto eth0
 iface eth0 inet dhcp
-
-auto eth0
-iface eth0 inet dhcp
+    up ifmetric eth0 10
 
 auto ppp0
 iface ppp0 inet wvdial
+    up ifmetric ppp0 20
 
 
 auto wlan0
 allow-hotplug wlan0
 iface wlan0 inet static
+    up ifmetric wlan0 30
 	address 192.168.21.128
 	netmask 255.255.255.0
 	gateway 192.168.21.1
@@ -21,6 +21,7 @@ iface wlan0 inet static
 auto wlan1
 allow-hotplug wlan1
 iface wlan1 inet static
+    up ifmetric wlan1 40
 	address 192.168.0.128
 	netmask 255.255.255.0
 	gateway 192.168.0.1
