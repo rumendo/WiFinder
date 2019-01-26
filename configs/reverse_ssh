@@ -1,9 +1,9 @@
 #!/bin/bash
 
-netstat -lanp | grep 78.130.176.94
+netstat -lanp | grep 78.130.176.102
 
 if [ $? -eq 1 ]
 then
-ssh -fN -R 7000:localhost:22 root@78.130.176.94
+ssh -fN -R 7000:localhost:22 root@78.130.176.102
 fi
 
