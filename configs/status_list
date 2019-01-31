@@ -1,4 +1,6 @@
-0 - Not available
-1 - Collecting handshakes
-2 - Deauthenticating
-3 - Idle
+Devices:
+    0 - Not available
+    1 - Collecting handshakes
+    2 - Deauthenticating
+    3 - Idle
+    4 - Establishing connection
