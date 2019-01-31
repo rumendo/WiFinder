@@ -1,20 +1,0 @@
-warning: NetworkManager is running with pid 943
-warning: wpa_supplicant is running with pid 931
-[?25l
-start capturing (stop with ctrl+c)
-INTERFACE:...............: wlx000f00775385
-FILTERLIST...............: 0 entries
-MAC CLIENT...............: f0a225dfe20c
-MAC ACCESS POINT.........: 78f944f31357 (incremented on every new client)
-EAPOL TIMEOUT............: 150000
-REPLAYCOUNT..............: 65062
-ANONCE...................: ebbcae7815e44834b8fc4de8f49614da8197ac3a6424f1318829eb21050d8970
-
-[2K[00:03:05 - 001] 6c3b6bc8882d -> f0a225dfe20c Kinov 2 [PROBERESPONSE, SEQUENCE 1992, AP CHANNEL 1]
-[2K[00:03:07 - 001] 485b39098a0c -> ffffffffffff Max-4G-LTE-8578 [PROBEREQUEST, SEQUENCE 715]
-[2K[00:03:07 - 001] 78f944f31358 -> 485b39098a0c Max-4G-LTE-8578 [PROBERESPONSE, SEQUENCE 0, AP CHANNEL 1]
-[2K[00:03:09 - 001] 6c3b6bc8882d -> f0a225dfe20c [FOUND PMKID CLIENT-LESS]
-[2KINFO: cha=1, rx=221, rx(dropped)=145, tx=18, powned=1, err=0[2K[00:03:10 - 006] c83a3555fef8 -> f0a225dfe20c Stefan [PROBERESPONSE, SEQUENCE 2825, AP CHANNEL 6]
-[2K[00:03:10 - 006] 98ded022d1e2 -> f0a225dfe20c TP-LINK_D1E2 [PROBERESPONSE, SEQUENCE 2122, AP CHANNEL 6]
-
-terminated...[?25h

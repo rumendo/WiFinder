@@ -1,14 +1,20 @@
 #!/bin/bash
 #CloudBalkan server - Ubuntu Server 18.04 - 0.5GB RAM, 1 CPU, 32GB - 78.130.176.104 - root/roottoor
+# ALLOWED_HOSTS = ['78.130.176.104', '127.0.0.0', 'localhost', '[::1]'] settings.py
 
 apt update -y
 apt upgrade -y
 
-apt install postgresql postgresql-contrib python3-pip python-pip expect -y
+apt install postgresql postgresql-contrib python3-pip python-pip expect python-psycopg2 python3-psycopg2 virtualenv -y
 
-pip3 install django requests bs4
+pip3 install django requests psycopg2
+
+cp /root/WiFinder/configs/find_device /etc/cron.d
+cp /root/WiFinder/control/scripts/find_device.sh /etc/cron.d
 
 useradd -s /bin/bash -G sudo -m -d /home/controller controller
 echo -e "root\nroot" | passwd controller
 su controller
 ssh-keygen -b 2048 -t rsa -f /home/controller -q -N ""
+
+# Manual restart needed!

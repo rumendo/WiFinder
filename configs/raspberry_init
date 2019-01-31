@@ -5,8 +5,8 @@ apt upgrade -y
 
 apt install expect python3-pip python-pip expect ifmetric wvdial libz-dev libssl-dev libpcap0.8-dev libcurl4-openssl-dev whereami-y
 
-cp ./reverse_ssh /etc/cron.d/
-cp ./cnc_cron /etc/cron.d/
+cp /root/WiFinder/configs/reverse_ssh /etc/cron.d/
+cp /root/WiFinder/configs/cnc_cron /etc/cron.d/
 
 echo "nameserver 1.1.1.1" > /etc/resolv.conf
 
