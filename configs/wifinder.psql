@@ -2,6 +2,8 @@
 # psql -d wifinder
 
 SET timezone='Europe/Sofia';
+ALTER USER controller WITH PASSWORD 'root';
+
 
 CREATE TABLE devices (
     id SERIAL PRIMARY KEY,
@@ -16,8 +18,8 @@ CREATE TABLE access_points (
     id SERIAL PRIMARY KEY,
     bssid MACADDR,
     ssid VARCHAR (32),
-    encription VARCHAR (8),
-    psk VARCHAR (8) DEFAULT 'Not Found',
+    encryption VARCHAR (8),
+    psk VARCHAR (63) DEFAULT 'Not Found',
     location POINT,
     device_id SMALLINT REFERENCES devices(id),
     last_updated TIMESTAMPTZ

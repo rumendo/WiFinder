@@ -7,6 +7,9 @@ apt install expect python3-pip python-pip expect ifmetric wvdial libz-dev libssl
 
 cp /root/WiFinder/configs/reverse_ssh /etc/cron.d/
 cp /root/WiFinder/configs/cnc_cron /etc/cron.d/
+cp /root/WiFinder/configs/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
+cp /root/WiFinder/configs/wvdial.conf /etc/wvdial.conf
+cp /root/WiFinder/configs/usb_modeswitch.conf /etc/usb_modeswitch.conf
 
 echo "nameserver 1.1.1.1" > /etc/resolv.conf
 
@@ -15,4 +18,4 @@ echo -e "root\nroot" | passwd rumen
 su rumen
 ssh-keygen -b 2048 -t rsa -f /home/rumen -q -N ""
 
-expect -c 'spawn ssh-copy-id controller@78.130.176.104 -o "StrictHostKeyChecking no"; expect "assword:"; send "root\r"; interact'
+expect -c 'spawn ssh-copy-id controller@78.130.176.99 -o "StrictHostKeyChecking no"; expect "assword:"; send "root\r"; interact'

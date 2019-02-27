@@ -7,9 +7,15 @@ hostname = 'localhost'
 username = 'controller'
 password = 'root'
 database = 'wifinder'
-psycopg2
+
 
 def index(request):
+    conn = psycopg2.connect("dbname='wifinder' user='controller' host='localhost' password='root'")
+    cur = conn.cursor()
+    cur.execute("""SELECT * FROM devices""")
+    devices = cur.fetchall()
+    print(devices)
+
     return render(request, 'control/home.html')
 
 
