@@ -1,9 +1,8 @@
-# createdb wifinder
-# psql -d wifinder
+--sudo -u postgres createuser controller
+--sudo -u postgres createdb -O controller wifinder
 
 SET timezone='Europe/Sofia';
 ALTER USER controller WITH PASSWORD 'root';
-
 
 CREATE TABLE devices (
     id SERIAL PRIMARY KEY,

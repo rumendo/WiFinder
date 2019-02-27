@@ -1,4 +1,27 @@
 {% extends "control/base.html" %}
 {% block content %}
-
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">MAC Address</th>
+          <th scope="col">SSH Port</th>
+          <th scope="col">Location</th>
+          <th scope="col">Status</th>
+          <th scope="col">Last Changed</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for device in devices %}
+        {% cycle '<tr scope="row">' '' '' '' %}
+          <td>{{device.id}}</td>
+          <td>{{device.mac_address}}</td>
+          <td>{{device.ssh_port}}</td>
+          <td>{{device.location}}</td>
+          <td>{{device.status}}</td>
+          <td>{{device.last_changed}}</td>
+        {% cycle '' '' '' '</tr>' %}
+        {% endfor %}
+      </tbody>
+    </table>
 {% endblock content %}
