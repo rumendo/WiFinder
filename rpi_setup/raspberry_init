@@ -5,11 +5,11 @@ apt upgrade -y
 
 apt install expect python3-pip python-pip expect ifmetric wvdial libz-dev libssl-dev libpcap0.8-dev libcurl4-openssl-dev whereami-y
 
-cp /root/WiFinder/configs/reverse_ssh /etc/cron.d/
-cp /root/WiFinder/configs/cnc_cron /etc/cron.d/
-cp /root/WiFinder/configs/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
-cp /root/WiFinder/configs/wvdial.conf /etc/wvdial.conf
-cp /root/WiFinder/configs/usb_modeswitch.conf /etc/usb_modeswitch.conf
+cp /root/WiFinder/rpi_setup/reverse_ssh /etc/cron.d/
+cp /root/WiFinder/rpi_setup/cnc_cron /etc/cron.d/
+cp /root/WiFinder/rpi_setup/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
+cp /root/WiFinder/rpi_setup/wvdial.conf /etc/wvdial.conf
+cp /root/WiFinder/rpi_setup/usb_modeswitch.conf /etc/usb_modeswitch.conf
 
 echo "nameserver 1.1.1.1" > /etc/resolv.conf
 
