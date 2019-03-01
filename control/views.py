@@ -2,21 +2,29 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from control.scripts.hcx_control import hcx_start
 import psycopg2
+import psycopg2
 
 
-def index(request):
+def home(request):
     conn = psycopg2.connect("dbname='wifinder' user='controller' host='localhost' password='root'")
     cur = conn.cursor()
     cur.execute("""SELECT * FROM devices""")
     devices = cur.fetchall()
     print(devices)
+    return render(request, 'control/home_example.html')
 
-    return render(request, 'control/home.html')
+
+def data(request):
+    return render(request, 'control/data.html')
 
 
-def start_hcx(request):
-    hcx_start()
+def map(request):
+    return render(request, 'control/map.html')
 
-    return HttpResponse("""
-    Maybe started.
-    """)
+
+def networks(request):
+    return render(request, 'control/networks.html')
+
+
+def clients(request):
+    return render(request, 'control/clients.html')

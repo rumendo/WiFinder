@@ -15,6 +15,7 @@
       <tbody>
         {% for network in networks %}
         {% cycle '<tr scope="row">' '' '' '' %}
+          <td>{{network.id}}</td>
           <td>{{network.bssid}}</td>
           <td>{{network.ssid}}</td>
           <td>{{network.encryption}}</td>

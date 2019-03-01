@@ -14,22 +14,34 @@
         </tr>
       </thead>
       <tbody>
-        {% for device in devices %}
-        {% cycle '<tr scope="row">' '' '' '' %}
-          <td>{{device.id}}</td>
-          <td>{{device.mac_address}}</td>
-          <td>{{device.ssh_port}}</td>
-          <td>{{device.location}}</td>
-          <td>{{device.status}}</td>
-          <td>{{device.last_changed}}</td>
+      <tr>
+          <td>1</td>
+          <td>A9-9B-7C-B3-3E-EC</td>
+          <td>7001</td>
+          <td>42.662989, 23.373940</td>
+          <td>Active, Collecting Handshakes</td>
+          <td>2019/02/28, 14:27:39</td>
           <td>
             <form action="http://78.130.176.99:8080/networks" method="get">
                 <input name="id" type="hidden" value="{{device.id}}"/>
                 <input type="submit" value="Networks" class="btn btn-success"/>
             </form>
           </td>
-        {% cycle '' '' '' '</tr>' %}
-        {% endfor %}
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>C2-F3-11-B3-3E-EC</td>
+          <td>7002</td>
+          <td>42.662989, 23.373940</td>
+          <td>Inactive</td>
+          <td>2019/02/28, 12:15:25</td>
+          <td>
+            <form action="http://78.130.176.99:8080/networks" method="get">
+                <input name="id" type="hidden" value="{{device.id}}"/>
+                <input type="submit" value="Networks" class="btn btn-success"/>
+            </form>
+          </td>
+      </tr>
       </tbody>
     </table>
 {% endblock content %}

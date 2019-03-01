@@ -24,4 +24,18 @@ data = [table_data[x:x+6] for x in range(0, len(table_data), 6)]
 
 result = json.loads(json.dumps(data))
 
-print(result[0][3])
+json_data = {}
+networks = []
+
+for network in result:
+    networks.append(network)
+
+json_data["networks"] = networks
+
+for idx, network in enumerate(json_data["networks"]):
+    json_data["networks"][idx] =\
+        {"id": network[0], "bssid": network[0], "ssid": network[1],
+         "encryption": network[2], "psk": network[3], "last_updated": network[5]}
+
+print(json_data)
+

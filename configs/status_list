@@ -3,3 +3,6 @@ Devices:
     1 - Collecting handshakes
     2 - Deauthenticating
     3 - Idle
+
+    git clone https://github.com/rumendo/WiFinder.git
+    sudo ./WiFinder/rpi_setup/raspberry_init

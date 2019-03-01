@@ -7,7 +7,7 @@ apt upgrade -y
 
 apt install postgresql postgresql-contrib python3-pip python-pip expect -y
 
-pip3 install django requests psycopg2
+pip3 install django requests psycopg2 bs4
 
 cp /root/WiFinder/configs/find_device /etc/cron.d
 cp /root/WiFinder/configs/find_device.sh /etc/cron.d
@@ -22,13 +22,6 @@ su -c "psql -d wifinder -c \"ALTER USER controller WITH PASSWORD 'root';\"" cont
 su -c "psql -d wifinder -c \"CREATE TABLE devices (id SERIAL PRIMARY KEY, status SMALLINT, mac_address MACADDR, ssh_port SMALLINT UNIQUE, location POINT, last_changed TIMESTAMPTZ);\"" controller
 su -c "psql -d wifinder -c \"CREATE TABLE access_points (id SERIAL PRIMARY KEY, bssid MACADDR, ssid VARCHAR (32), encryption VARCHAR (8), psk VARCHAR (63) DEFAULT 'Not Found', location POINT, device_id SMALLINT REFERENCES devices(id), last_updated TIMESTAMPTZ);\"" controller
 
-
 su controller
 git clone https://github.com/rumendo/WiFinder.git
 ssh-keygen -b 2048 -t rsa -f /home/controller -q -N ""
-
-#cd WiFinder
-#python3 manage.py runserver 78.130.176.99:8080
-
-# Manual restart needed!
-
