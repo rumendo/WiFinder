@@ -15,7 +15,7 @@
       </thead>
       <tbody>
         {% for device in devices %}
-        {% cycle '<tr scope="row">' '' '' '' %}
+            <tr>
           <td>{{device.id}}</td>
           <td>{{device.mac_address}}</td>
           <td>{{device.ssh_port}}</td>
@@ -28,7 +28,7 @@
                 <input type="submit" value="Networks" class="btn btn-success"/>
             </form>
           </td>
-        {% cycle '' '' '' '</tr>' %}
+        </tr>
         {% endfor %}
       </tbody>
     </table>

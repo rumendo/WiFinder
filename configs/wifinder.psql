@@ -15,7 +15,7 @@ CREATE TABLE devices (
 
 CREATE TABLE access_points (
     id SERIAL PRIMARY KEY,
-    bssid MACADDR,
+    bssid MACADDR UNIQUE,
     ssid VARCHAR (32),
     encryption VARCHAR (8),
     psk VARCHAR (63) DEFAULT 'Not Found',
@@ -23,7 +23,6 @@ CREATE TABLE access_points (
     device_id SMALLINT REFERENCES devices(id),
     last_updated TIMESTAMPTZ
 );
-
 
 
 # QUERIES

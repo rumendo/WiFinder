@@ -11,6 +11,7 @@ pip3 install django requests psycopg2 bs4
 
 cp /root/WiFinder/configs/find_device /etc/cron.d
 cp /root/WiFinder/configs/find_device.sh /etc/cron.d
+cp /root/WiFinder/control/get_results.py /etc/cron.d
 
 useradd -s /bin/bash -G sudo -m -d /home/controller controller
 echo -e "root\nroot" | passwd controller

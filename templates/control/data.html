@@ -8,23 +8,23 @@
           <th scope="col">SSID</th>
           <th scope="col">Encryption</th>
           <th scope="col">Pre-Shared Key</th>
-          <th scope="col">Captured By</th>
           <th scope="col">Location</th>
           <th scope="col">Last Updated</th>
         </tr>
       </thead>
       <tbody>
         {% for network in networks %}
-        {% cycle '<tr scope="row">' '' '' '' %}
+            <tr>
+{#        {% cycle '<tr scope="row">' '' '' '' %}#}
           <td>{{network.id}}</td>
           <td>{{network.bssid}}</td>
           <td>{{network.ssid}}</td>
           <td>{{network.encryption}}</td>
           <td>{{network.psk}}</td>
-          <td>{{network.device_id}}</td>
           <td>{{network.location}}</td>
           <td>{{network.last_updated}}</td>
-        {% cycle '' '' '' '</tr>' %}
+{#        {% cycle '' '' '' '</tr>' %}#}
+            </tr>
         {% endfor %}
       </tbody>
     </table>

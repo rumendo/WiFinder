@@ -3,3 +3,5 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 MAILTO=""
 
 @reboot controller /etc/cron.d/find_device.sh
+* * * * * controller python3 /etc/cron.d/get_results.py
+* * * * * controller ( sleep 30 ; python3 /etc/cron.d/get_results.py )
