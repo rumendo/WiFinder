@@ -21,7 +21,7 @@ sudo -u postgres createdb -O controller wifinder
 su -c "psql -d wifinder -c \"SET timezone='Europe/Sofia';\"" controller
 su -c "psql -d wifinder -c \"ALTER USER controller WITH PASSWORD 'root';\"" controller
 su -c "psql -d wifinder -c \"CREATE TABLE devices (id SERIAL PRIMARY KEY, status SMALLINT, mac_address MACADDR, ssh_port SMALLINT UNIQUE, location POINT, last_changed TIMESTAMPTZ);\"" controller
-su -c "psql -d wifinder -c \"CREATE TABLE access_points (id SERIAL PRIMARY KEY, bssid MACADDR, ssid VARCHAR (32), encryption VARCHAR (8), psk VARCHAR (63) DEFAULT 'Not Found', location POINT, device_id SMALLINT REFERENCES devices(id), last_updated TIMESTAMPTZ);\"" controller
+su -c "psql -d wifinder -c \"CREATE TABLE access_points (id SERIAL PRIMARY KEY, bssid MACADDR UNIQUE, ssid VARCHAR (32), encryption VARCHAR (8), psk VARCHAR (63) DEFAULT 'Not Found', location POINT, last_updated TIMESTAMPTZ);\"" controller
 
 su controller
 git clone https://github.com/rumendo/WiFinder.git

@@ -47,8 +47,7 @@ while True:
         time.sleep(2)
         continue
     elif status == '3':
-        time.sleep()
-        #
+        time.sleep(2)
         continue
 
     # Removes leftover capture

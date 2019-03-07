@@ -20,7 +20,6 @@ CREATE TABLE access_points (
     encryption VARCHAR (8),
     psk VARCHAR (63) DEFAULT 'Not Found',
     location POINT,
-    device_id SMALLINT REFERENCES devices(id),
     last_updated TIMESTAMPTZ
 );
 
