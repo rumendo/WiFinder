@@ -16,19 +16,48 @@
       <tbody>
         {% for device in devices %}
             <tr>
-          <td>{{device.id}}</td>
-          <td>{{device.mac_address}}</td>
-          <td>{{device.ssh_port}}</td>
-          <td>{{device.location}}</td>
-          <td>{{device.status}}</td>
-          <td>{{device.last_changed}}</td>
-          <td>
-            <form action="http://78.130.176.99:8080/networks" method="get">
-                <input name="id" type="hidden" value="{{device.id}}"/>
-                <input type="submit" value="Networks" class="btn btn-success"/>
-            </form>
-          </td>
-        </tr>
+              <td>{{device.id}}</td>
+              <td>{{device.mac_address}}</td>
+              <td>{{device.ssh_port}}</td>
+              <td>{{device.location}}</td>
+              <td>{{device.status}}</td>
+              <td>{{device.last_changed}}</td>
+              <td>
+                <form action="http://78.130.176.99:8080/networks" method="get">
+                    <input name="port" type="hidden" value="{{device.ssh_port}}"/>
+                    <input type="submit" value="Networks" class="btn btn-success"/>
+                </form>
+              </td>
+                {% if device.status == 1 %}
+                  <td>
+                    <form action="http://78.130.176.99:8080" method="get">
+                        <input name="port" type="hidden" value="{{device.ssh_port}}"/>
+                        <input name="status" type="hidden" value="{{device.status}}"/>
+                        <input type="submit" value="Stop capturing" class="btn btn-warning"/>
+                    </form>
+                  </td>
+                {% elif device.status == 2 %}
+                    <td>
+                        <form action="http://78.130.176.99:8080" method="get">
+                            <input name="port" type="hidden" value="{{device.ssh_port}}"/>
+                            <input name="status" type="hidden" value="{{device.status}}"/>
+                            <input type="submit" value="Start capturing" class="btn btn-success"/>
+                        </form>
+                    </td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                {% if device.status %}
+                  <td>
+                    <form action="http://78.130.176.99:8080" method="get">
+                        <input name="reboot" type="hidden" value="{{device.ssh_port}}"/>
+                        <input type="submit" value="Reboot device" class="btn btn-danger"/>
+                    </form>
+                  </td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+            </tr>
         {% endfor %}
       </tbody>
     </table>

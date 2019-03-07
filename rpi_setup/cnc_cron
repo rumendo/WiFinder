@@ -2,6 +2,8 @@ SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 MAILTO=""
 
+@reboot root /home/rumen/WiFinder/rpi_setup/upload_cap.py
+
 * * * * * root /etc/cron.d/reverse_ssh
 * * * * * root ( sleep 15 ; /etc/cron.d/reverse_ssh )
 * * * * * root ( sleep 30 ; /etc/cron.d/reverse_ssh )

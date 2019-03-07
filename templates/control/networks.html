@@ -3,9 +3,9 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">ID</th>
           <th scope="col">BSSID</th>
           <th scope="col">SSID</th>
+          <th scope="col">Channel</th>
           <th scope="col">Encryption</th>
           <th scope="col">Location</th>
           <th scope="col">Last Updated</th>
@@ -17,12 +17,17 @@
         {% cycle '<tr scope="row">' '' '' '' %}
           <td>{{network.bssid}}</td>
           <td>{{network.ssid}}</td>
+          <td>{{network.channel}}</td>
           <td>{{network.encryption}}</td>
           <td>{{network.location}}</td>
           <td>{{network.last_updated}}</td>
           <td>
-              <form action="http://78.130.176.99:8080/network" method="get">
+              <form action="http://78.130.176.99:8080/deauth_network" method="get"
+                    onsubmit="return confirm('This will cause all clients connected to the network' +
+                     'to lose their network access for 60 seconds.\nAre you sure you want to do this?');">
                   <input name="bssid" type="hidden" value="{{network.bssid}}"/>
+                  <input name="port" type="hidden" value="{{network.ssh_port}}"/>
+                  <input name="channel" type="hidden" value="{{network.channel"/>
                   <input type="submit" value="Deauthenticate" class="btn btn-danger"/>
               </form>
           </td>

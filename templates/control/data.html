@@ -10,20 +10,25 @@
           <th scope="col">Pre-Shared Key</th>
           <th scope="col">Location</th>
           <th scope="col">Last Updated</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         {% for network in networks %}
             <tr>
-{#        {% cycle '<tr scope="row">' '' '' '' %}#}
-          <td>{{network.id}}</td>
-          <td>{{network.bssid}}</td>
-          <td>{{network.ssid}}</td>
-          <td>{{network.encryption}}</td>
-          <td>{{network.psk}}</td>
-          <td>{{network.location}}</td>
-          <td>{{network.last_updated}}</td>
-{#        {% cycle '' '' '' '</tr>' %}#}
+                <td>{{network.id}}</td>
+                <td>{{network.bssid}}</td>
+                <td>{{network.ssid}}</td>
+                <td>{{network.encryption}}</td>
+                <td>{{network.psk}}</td>
+                <td>{{network.location}}</td>
+                <td>{{network.last_updated}}</td>
+                <td>
+                    <form action="http://78.130.176.99:8080/data" method="get">
+                        <input name="delete" type="hidden" value="{{network.id}}"/>
+                        <input type="submit" value="Remove" class="btn btn-danger"/>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
       </tbody>

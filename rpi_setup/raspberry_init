@@ -23,5 +23,7 @@ expect -c 'spawn ssh-copy-id controller@78.130.176.99 -o "StrictHostKeyChecking 
 useradd -s /bin/bash -G sudo -m -d /home/rumen rumen
 echo -e "root\nroot" | passwd rumen
 su rumen
+ssh-keygen -b 2048 -t rsa -f /home/rumen/.ssh/id_rsa -q -N ""
+expect -c 'spawn ssh-copy-id controller@78.130.176.99 -o "StrictHostKeyChecking no"; expect "assword:"; send "root\r"; interact'
 
 git clone https://github.com/rumendo/WiFinder.git
