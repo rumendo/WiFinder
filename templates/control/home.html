@@ -23,14 +23,14 @@
               <td>{{device.status}}</td>
               <td>{{device.last_changed}}</td>
               <td>
-                <form action="http://78.130.176.99:8080/networks" method="get">
+                <form action="http://78.130.176.87:8080/networks" method="get">
                     <input name="port" type="hidden" value="{{device.ssh_port}}"/>
                     <input type="submit" value="Networks" class="btn btn-success"/>
                 </form>
               </td>
                 {% if device.status == 1 %}
                   <td>
-                    <form action="http://78.130.176.99:8080" method="get">
+                    <form action="http://78.130.176.87:8080" method="get">
                         <input name="port" type="hidden" value="{{device.ssh_port}}"/>
                         <input name="status" type="hidden" value="{{device.status}}"/>
                         <input type="submit" value="Stop capturing" class="btn btn-warning"/>
@@ -38,7 +38,7 @@
                   </td>
                 {% elif device.status == 2 %}
                     <td>
-                        <form action="http://78.130.176.99:8080" method="get">
+                        <form action="http://78.130.176.87:8080" method="get">
                             <input name="port" type="hidden" value="{{device.ssh_port}}"/>
                             <input name="status" type="hidden" value="{{device.status}}"/>
                             <input type="submit" value="Start capturing" class="btn btn-success"/>
@@ -49,7 +49,7 @@
                 {% endif %}
                 {% if device.status %}
                   <td>
-                    <form action="http://78.130.176.99:8080" method="get">
+                    <form action="http://78.130.176.87:8080" method="get">
                         <input name="reboot" type="hidden" value="{{device.ssh_port}}"/>
                         <input type="submit" value="Reboot device" class="btn btn-danger"/>
                     </form>

@@ -17,13 +17,13 @@ cp /root/WiFinder/rpi_setup/usb_modeswitch.conf /etc/usb_modeswitch.conf
 
 echo "nameserver 1.1.1.1" > /etc/resolv.conf
 ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
-expect -c 'spawn ssh-copy-id controller@78.130.176.99 -o "StrictHostKeyChecking no"; expect "assword:"; send "root\r"; interact'
+expect -c 'spawn ssh-copy-id controller@78.130.176.20 -o "StrictHostKeyChecking no"; expect "assword:"; send "toor\r"; interact'
 
 
 useradd -s /bin/bash -G sudo -m -d /home/rumen rumen
-echo -e "root\nroot" | passwd rumen
+echo -e "toor\ntoor" | passwd rumen
 su rumen
 ssh-keygen -b 2048 -t rsa -f /home/rumen/.ssh/id_rsa -q -N ""
-expect -c 'spawn ssh-copy-id controller@78.130.176.99 -o "StrictHostKeyChecking no"; expect "assword:"; send "root\r"; interact'
+expect -c 'spawn ssh-copy-id controller@78.130.176.20 -o "StrictHostKeyChecking no"; expect "assword:"; send "toor\r"; interact'
 
 git clone https://github.com/rumendo/WiFinder.git

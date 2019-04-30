@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 import subprocess
 import psycopg2
 import os
@@ -111,6 +112,33 @@ def networks(request):
 
 def data_map(request):
     return render(request, 'control/map.html')
+
+
+def get_map_data(request):
+    conn = psycopg2.connect("dbname='wifinder' user='controller'"
+                            "host='localhost' password='root'")
+    cur = conn.cursor()
+    cur.execute("""SELECT * FROM access_points;""")
+    result = cur.fetchall()
+
+    json_data = {}
+    networks = []
+
+    for network in result:
+        networks.append(network)
+
+    json_data["networks"] = networks
+
+    for idx, network in enumerate(json_data["networks"]):
+        json_data["networks"][idx] = \
+            {"id": network[0], "bssid": network[1],
+             "ssid": network[2], "encryption": network[3],
+             "psk": network[4], "location": network[5], "last_updated": network[6]}
+
+    cur.close()
+    conn.close()
+
+    return JsonResponse(json_data)
 
 
 def location(request):

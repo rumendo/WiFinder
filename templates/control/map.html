@@ -1,0 +1,86 @@
+{% extends "control/base.html" %}
+{% block content %}
+    <style>
+      #map {
+        height: 90%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(42.650692, 23.342963),
+          zoom: 11
+        });
+        var infoWindow = new google.maps.InfoWindow;
+        var url = 'http://78.130.176.87:8080/get_map_data';
+        downloadUrl(url, function(result) {
+          Array.prototype.forEach.call(result.networks, function(element) {
+            console.log(element);
+            var id = element.id;
+            var name = element.name;
+            var address = element.address;
+            var type = element.type;
+            var location = element.location.split(',');
+            var point = new google.maps.LatLng(
+                parseFloat(location[0].replace('(', '')),
+                parseFloat(location[1].replace(')', '')));
+
+            var infowincontent = document.createElement('div');
+            var ssidDOM = document.createElement('strong');
+            ssidDOM.textContent = "SSID: " + element.ssid;
+            infowincontent.appendChild(ssidDOM);
+            infowincontent.appendChild(document.createElement('br'));
+            var bssidDOM = document.createElement('text');
+            bssidDOM.textContent = "BSSID: " + element.bssid;
+            infowincontent.appendChild(bssidDOM);
+            infowincontent.appendChild(document.createElement('br'));
+            var encryptionDOM = document.createElement('text');
+            encryptionDOM.textContent = "Encryption: " + element.encryption;
+            infowincontent.appendChild(encryptionDOM);
+            infowincontent.appendChild(document.createElement('br'));
+            var pskDOM = document.createElement('text');
+            pskDOM.textContent = "PSK: " + element.psk;
+            infowincontent.appendChild(pskDOM);
+            infowincontent.appendChild(document.createElement('br'));
+            var last_updatedDOM = document.createElement('text');
+            var update = new Date(element.last_updated);
+            last_updatedDOM.textContent = "Last Updated: " + update.toLocaleString('bg-BG');
+            infowincontent.appendChild(last_updatedDOM);
+
+
+            var marker = new google.maps.Marker({
+              map: map,
+              position: point,
+            });
+            marker.addListener('click', function() {
+              infoWindow.setContent(infowincontent);
+              infoWindow.open(map, marker);
+            });
+          });
+        });
+      }
+      function downloadUrl(url, callback) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var myArr = JSON.parse(this.responseText);
+                callback(myArr);
+            }
+        };
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiTBKcAUdG9VYCS4wo7Og4DGHIMGnmojc&callback=initMap">
+    </script>
+  </body>
+</html>
+{% endblock content %}

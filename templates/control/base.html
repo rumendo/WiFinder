@@ -4,7 +4,8 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'main.css' %}">
-    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     {% if title %}
         <title>{{ title }} - WiFinder</title>
     {% else %}
@@ -25,7 +26,7 @@
             <a class="nav-link" href="/data">Data</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="#">Map</a>
+            <a class="nav-link" href="/map">Map</a>
         </li>
 {#        <li class="nav-item active">#}
 {#            <a class="nav-link" href="#">About</a>#}

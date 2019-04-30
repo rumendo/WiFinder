@@ -1,6 +1,6 @@
 #!/bin/bash
-#CloudBalkan server - Ubuntu Server 18.04 - 0.5GB RAM, 1 CPU, 32GB - 78.130.176.99 - root/roottoor
-# ALLOWED_HOSTS = ['78.130.176.99', '127.0.0.0', 'localhost', '[::1]'] settings.py
+#CloudBalkan server - Ubuntu Server 18.04 - 0.5GB RAM, 1 CPU, 32GB - 78.130.176.20 - root/roottoor
+# ALLOWED_HOSTS = ['78.130.176.20', '127.0.0.0', 'localhost', '[::1]'] settings.py
 
 apt update -y
 apt upgrade -y
@@ -14,7 +14,7 @@ cp /root/WiFinder/configs/find_device.sh /etc/cron.d
 cp /root/WiFinder/control/get_results.py /etc/cron.d
 
 useradd -s /bin/bash -G sudo -m -d /home/controller controller
-echo -e "root\nroot" | passwd controller
+echo -e "toor\ntoor" | passwd controller
 
 sudo -u postgres createuser controller
 sudo -u postgres createdb -O controller wifinder
