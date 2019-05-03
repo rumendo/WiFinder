@@ -19,7 +19,7 @@
           zoom: 11
         });
         var infoWindow = new google.maps.InfoWindow;
-        var url = 'http://78.130.176.87:8080/get_map_data';
+        var url = 'http://78.130.176.20:8080/get_map_data';
         downloadUrl(url, function(result) {
           Array.prototype.forEach.call(result.networks, function(element) {
             console.log(element);

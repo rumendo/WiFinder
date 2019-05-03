@@ -1,17 +1,18 @@
 #!/bin/bash
-#CloudBalkan server - Ubuntu Server 18.04 - 0.5GB RAM, 1 CPU, 32GB - 78.130.176.20 - root/roottoor
+#CloudBalkan server - Ubuntu Server 18.04 - 0.5GB RAM, 1 CPU, 32GB - 78.130.176.20 - root/toor
 # ALLOWED_HOSTS = ['78.130.176.20', '127.0.0.0', 'localhost', '[::1]'] settings.py
 
 apt update -y
 apt upgrade -y
 
-apt install postgresql postgresql-contrib python3-pip python-pip expect -y
+apt install postgresql postgresql-contrib python3-pip python-pip expect python manage.py migrate python3-psycopg2 -y
 
 pip3 install django requests psycopg2 bs4
 
 cp /root/WiFinder/configs/find_device /etc/cron.d
 cp /root/WiFinder/configs/find_device.sh /etc/cron.d
 cp /root/WiFinder/control/get_results.py /etc/cron.d
+ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
 
 useradd -s /bin/bash -G sudo -m -d /home/controller controller
 echo -e "toor\ntoor" | passwd controller
@@ -25,4 +26,4 @@ su -c "psql -d wifinder -c \"CREATE TABLE access_points (id SERIAL PRIMARY KEY, 
 
 su controller
 git clone https://github.com/rumendo/WiFinder.git
-ssh-keygen -b 2048 -t rsa -f /home/controller -q -N ""
+ssh-keygen -b 2048 -t rsa -f /home/controller/.ssh/id_rsa -q -N ""

