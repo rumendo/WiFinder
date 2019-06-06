@@ -83,7 +83,7 @@ while True:
         continue
     elif status == '3':
         time.sleep(2)
-    continue
+        continue
 
     # Removes leftover capture
     if os.path.exists("/home/rumen/WiFinder/rpi_setup/capture.cap"):

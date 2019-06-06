@@ -1,11 +1,11 @@
 #!/bin/bash
 #CloudBalkan server - Ubuntu Server 18.04 - 0.5GB RAM, 1 CPU, 32GB - 78.130.176.20 - root/toor
-# ALLOWED_HOSTS = ['78.130.176.20', '127.0.0.0', 'localhost', '[::1]'] settings.py
+# ALLOWED_HOSTS = ['78.130.176.33', '127.0.0.0', 'localhost', '[::1]'] settings.py
 
 apt update -y
 apt upgrade -y
 
-apt install postgresql postgresql-contrib python3-pip python-pip expect python manage.py migrate python3-psycopg2 -y
+apt install postgresql postgresql-contrib python3-pip python-pip expect python python3-psycopg2 -y
 
 pip3 install django requests psycopg2 bs4
 

@@ -20,7 +20,7 @@
               <td>{{network.encryption}}</td>
               <td>{{network.location}}</td>
               <td>
-                  <form action="http://78.130.176.20:8080/deauth_network" method="get"
+                  <form action="http://78.130.176.33:8080/deauth_network" method="get"
                         onsubmit="return confirm('This could cause all clients connected to the network' +
                          'to lose their network access for 60 seconds.\nAre you sure you want to do this?');">
                       <input name="bssid" type="hidden" value="{{network.bssid}}"/>
